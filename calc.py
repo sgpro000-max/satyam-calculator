@@ -1,6 +1,12 @@
 import streamlit as st
 from calculator import press, clear, backspace, calculate
 
+with open("style.css") as f:
+    st.markdown(
+        f"<style>{f.read()}</style>",
+        unsafe_allow_html=True
+    )
+
 st.set_page_config(
     page_title="Satyam Calculator",
     page_icon="logo.png",
