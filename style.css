@@ -1,1 +1,61 @@
-/* RGB Theme */
+/* ---------- BACKGROUND ---------- */
+
+.stApp{
+    background:#0f1117;
+}
+
+/* ---------- BUTTON ---------- */
+
+.stButton>button{
+    width:100%;
+    height:65px;
+    font-size:24px;
+    font-weight:bold;
+
+    border-radius:15px;
+
+    border:2px solid #00e5ff;
+
+    background:#1b1d25;
+
+    color:white;
+
+    transition:.3s;
+}
+
+/* Hover */
+
+.stButton>button:hover{
+
+    border-color:#ff00ff;
+
+    color:#00e5ff;
+
+    box-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan,
+    0 0 30px cyan;
+
+    transform:scale(1.05);
+
+}
+
+/* ---------- DISPLAY ---------- */
+
+.stTextInput input{
+
+    text-align:right;
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    background:#111;
+
+    color:#00ffcc;
+
+    border:2px solid cyan;
+
+    border-radius:15px;
+
+}
