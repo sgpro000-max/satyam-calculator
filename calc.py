@@ -1,5 +1,8 @@
 import streamlit as st
 
+if "expression" not in st.session_state:
+    st.session_state.expression = ""
+
 st.set_page_config(
     page_title="Satyam Calculator",
     page_icon="logo.png",
