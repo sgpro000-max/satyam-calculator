@@ -32,13 +32,7 @@ with col2:
 
 st.divider()
 
-# ---------- DISPLAY ----------
-st.text_input(
-    "",
-    value=st.session_state.expression,
-    disabled=True,
-    label_visibility="collapsed"
-)
+
 
 # ---------- ROW 1 ----------
 c1, c2, c3, c4 = st.columns(4)
@@ -109,3 +103,10 @@ with c2:
 with c3:
     if st.button("=", use_container_width=True):
         st.session_state.expression = calculate(st.session_state.expression)
+
+st.text_input(
+    "",
+    value=st.session_state.expression,
+    disabled=True,
+    label_visibility="collapsed"
+)
