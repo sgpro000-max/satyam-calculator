@@ -32,6 +32,12 @@ with col2:
 
 st.divider()
 
+st.text_input(
+    "",
+    value=st.session_state.expression,
+    disabled=True,
+    label_visibility="collapsed"
+)
 
 
 # ---------- ROW 1 ----------
