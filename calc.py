@@ -1,5 +1,12 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Satyam Calculator",
+    page_icon="logo.png",
+    layout="centered"
+)
+
+st.image("logo.png", width=150)
 st.title("🧮 SATYAM CALCULATOR")
 
 num1 = st.number_input("Pahli Rashi", value=0.0)
