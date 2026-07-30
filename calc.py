@@ -9,29 +9,65 @@ st.set_page_config(
 col1, col2 = st.columns([1, 4])
 
 with col1:
-    st.image("logo.png", width=100)
+    st.image("logo.png", width=90)
 
 with col2:
     st.markdown("""
     <h1 style="margin-bottom:0;">SATYAM CALCULATOR</h1>
-    <p style="color:#00e5ff;margin-top:0;">
+    <p style="color:gray;margin-top:-10px;">
     SMART • POWERFUL • ACCURATE
     </p>
     """, unsafe_allow_html=True)
 
-num1 = st.number_input("Pahli Rashi", value=0.0)
-op = st.selectbox("Operator", ["+", "-", "*", "/"])
-num2 = st.number_input("Dushri Rashi", value=0.0)
+st.markdown("---")
 
-if st.button("Calculate"):
-    if op == "+":
-        st.success(num1 + num2)
-    elif op == "-":
-        st.success(num1 - num2)
-    elif op == "*":
-        st.success(num1 * num2)
-    elif op == "/":
-        if num2 != 0:
-            st.success(num1 / num2)
-        else:
-            st.error("Zero se Divide Nahi Hota!")
+display = st.text_input(
+    "",
+    value="0",
+    disabled=True,
+    label_visibility="collapsed"
+)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("7", use_container_width=True)
+with col2:
+    st.button("8", use_container_width=True)
+with col3:
+    st.button("9", use_container_width=True)
+with col4:
+    st.button("÷", use_container_width=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("4", use_container_width=True)
+with col2:
+    st.button("5", use_container_width=True)
+with col3:
+    st.button("6", use_container_width=True)
+with col4:
+    st.button("×", use_container_width=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("1", use_container_width=True)
+with col2:
+    st.button("2", use_container_width=True)
+with col3:
+    st.button("3", use_container_width=True)
+with col4:
+    st.button("-", use_container_width=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("0", use_container_width=True)
+with col2:
+    st.button(".", use_container_width=True)
+with col3:
+    st.button("=", use_container_width=True)
+with col4:
+    st.button("+", use_container_width=True)
