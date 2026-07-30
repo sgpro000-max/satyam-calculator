@@ -6,8 +6,18 @@ st.set_page_config(
     layout="centered"
 )
 
-st.image("logo.png", width=150)
-st.title("🧮 SATYAM CALCULATOR")
+col1, col2 = st.columns([1, 4])
+
+with col1:
+    st.image("logo.png", width=100)
+
+with col2:
+    st.markdown("""
+    <h1 style="margin-bottom:0;">SATYAM CALCULATOR</h1>
+    <p style="color:#00e5ff;margin-top:0;">
+    SMART • POWERFUL • ACCURATE
+    </p>
+    """, unsafe_allow_html=True)
 
 num1 = st.number_input("Pahli Rashi", value=0.0)
 op = st.selectbox("Operator", ["+", "-", "*", "/"])
