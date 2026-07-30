@@ -1,7 +1,5 @@
 import streamlit as st
-
-if "expression" not in st.session_state:
-    st.session_state.expression = ""
+from calculator import press, clear, backspace, calculate
 
 st.set_page_config(
     page_title="Satyam Calculator",
@@ -9,6 +7,10 @@ st.set_page_config(
     layout="centered"
 )
 
+if "expression" not in st.session_state:
+    st.session_state.expression = ""
+
+# ---------- HEADER ----------
 col1, col2 = st.columns([1, 4])
 
 with col1:
@@ -22,55 +24,82 @@ with col2:
     </p>
     """, unsafe_allow_html=True)
 
-st.markdown("---")
+st.divider()
 
-display = st.text_input(
+# ---------- DISPLAY ----------
+st.text_input(
     "",
-    value="0",
+    value=st.session_state.expression,
     disabled=True,
     label_visibility="collapsed"
 )
 
-col1, col2, col3, col4 = st.columns(4)
+# ---------- ROW 1 ----------
+c1, c2, c3, c4 = st.columns(4)
 
-with col1:
-    st.button("7", use_container_width=True)
-with col2:
-    st.button("8", use_container_width=True)
-with col3:
-    st.button("9", use_container_width=True)
-with col4:
-    st.button("÷", use_container_width=True)
+with c1:
+    if st.button("AC", use_container_width=True):
+        st.session_state.expression = clear()
 
-col1, col2, col3, col4 = st.columns(4)
+with c2:
+    if st.button("⌫", use_container_width=True):
+        st.session_state.expression = backspace(st.session_state.expression)
 
-with col1:
-    st.button("4", use_container_width=True)
-with col2:
-    st.button("5", use_container_width=True)
-with col3:
-    st.button("6", use_container_width=True)
-with col4:
-    st.button("×", use_container_width=True)
+with c3:
+    if st.button("%", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "%")
 
-col1, col2, col3, col4 = st.columns(4)
+with c4:
+    if st.button("÷", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "÷")
 
-with col1:
-    st.button("1", use_container_width=True)
-with col2:
-    st.button("2", use_container_width=True)
-with col3:
-    st.button("3", use_container_width=True)
-with col4:
-    st.button("-", use_container_width=True)
+# ---------- ROW 2 ----------
+c1, c2, c3, c4 = st.columns(4)
 
-col1, col2, col3, col4 = st.columns(4)
+for col, value in zip([c1, c2, c3], ["7", "8", "9"]):
+    with col:
+        if st.button(value, use_container_width=True):
+            st.session_state.expression = press(st.session_state.expression, value)
 
-with col1:
-    st.button("0", use_container_width=True)
-with col2:
-    st.button(".", use_container_width=True)
-with col3:
-    st.button("=", use_container_width=True)
-with col4:
-    st.button("+", use_container_width=True)
+with c4:
+    if st.button("×", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "×")
+
+# ---------- ROW 3 ----------
+c1, c2, c3, c4 = st.columns(4)
+
+for col, value in zip([c1, c2, c3], ["4", "5", "6"]):
+    with col:
+        if st.button(value, use_container_width=True):
+            st.session_state.expression = press(st.session_state.expression, value)
+
+with c4:
+    if st.button("-", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "-")
+
+# ---------- ROW 4 ----------
+c1, c2, c3, c4 = st.columns(4)
+
+for col, value in zip([c1, c2, c3], ["1", "2", "3"]):
+    with col:
+        if st.button(value, use_container_width=True):
+            st.session_state.expression = press(st.session_state.expression, value)
+
+with c4:
+    if st.button("+", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "+")
+
+# ---------- ROW 5 ----------
+c1, c2, c3 = st.columns(3)
+
+with c1:
+    if st.button("0", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "0")
+
+with c2:
+    if st.button(".", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, ".")
+
+with c3:
+    if st.button("=", use_container_width=True):
+        st.session_state.expression = calculate(st.session_state.expression)
