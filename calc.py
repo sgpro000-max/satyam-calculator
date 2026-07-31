@@ -36,12 +36,11 @@ st.divider()
 st.markdown(
     f"""
     <div class="display">
-        {st.session_state.expression if st.session_state.expression else "0"}
+        <span>{st.session_state.expression if st.session_state.expression else "0"}</span>
     </div>
     """,
     unsafe_allow_html=True,
 )
-
 # ---------------- ROW 1 ----------------
 c1, c2, c3, c4 = st.columns(4)
 
