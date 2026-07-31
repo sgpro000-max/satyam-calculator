@@ -117,39 +117,40 @@ with c4:
         st.rerun()
 
 # ---------------- ROW 5 ----------------
-c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns(3)
 
-with c1:
-    if st.button("0", use_container_width=True):
-        st.session_state.expression = press(st.session_state.expression, "0")
-        st.rerun()
+    with c1:
+        if st.button("0", use_container_width=True):
+            st.session_state.expression = press(st.session_state.expression, "0")
+            st.rerun()
 
-with c2:
-    if st.button(".", use_container_width=True):
-        st.session_state.expression = press(st.session_state.expression, ".")
-        st.rerun()
+    with c2:
+        if st.button(".", use_container_width=True):
+            st.session_state.expression = press(st.session_state.expression, ".")
+            st.rerun()
 
-with c3:
-    if st.button("=", use_container_width=True):
+    with c3:
+        if st.button("=", use_container_width=True):
+    
+            old_expression = st.session_state.expression
 
-        old_expression = st.session_state.expression
+            result = calculate(old_expression)
 
-        result = calculate(old_expression)
+            if result != "Error":
+                st.session_state.history.insert(
+                    0,
+                    f"{old_expression} = {result}"
+                )
+    
+            st.session_state.expression = result
 
-        if result != "Error":
-            st.session_state.history.insert(
-                0,
-                f"{old_expression} = {result}"
-            )
+            st.rerun()
+        with right:
+        st.markdown("### 🕒 History")
 
-        st.session_state.expression = result
-
-        st.rerun()
-    with right:
-    st.markdown("### 🕒 History")
-
-    if st.session_state.history:
-        for item in st.session_state.history[:8]:
-            st.markdown(f"- {item}")
-    else:
-        st.caption("No calculations yet.")
+        if st.session_state.history:
+            for item in st.session_state.history[:8]:
+                st.markdown(f"- {item}")
+        else:
+            st.caption("No calculations yet.")
+    
