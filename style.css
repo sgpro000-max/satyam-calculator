@@ -47,3 +47,61 @@
 .display::-webkit-scrollbar{
     display:none;
 }
+
+/* ---------- BACKGROUND ---------- */
+
+.stApp{
+    background:#0f1117;
+}
+
+/* ---------- BUTTON ---------- */
+
+.stButton > button{
+
+    width:100%;
+    height:65px;
+
+    background:#1b1d25;
+
+    color:white;
+
+    font-size:22px;
+    font-weight:bold;
+
+    border-radius:15px;
+
+    border:2px solid #00e5ff;
+
+    transition:0.25s;
+
+    box-shadow:
+        inset 0 0 5px rgba(255,255,255,.05),
+        0 0 8px rgba(0,229,255,.25);
+
+}
+
+/* Hover */
+
+.stButton > button:hover{
+
+    background:#202432;
+
+    color:#00ffff;
+
+    border-color:#ff00ff;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 12px cyan,
+        0 0 25px cyan;
+
+}
+
+/* Click */
+
+.stButton > button:active{
+
+    transform:scale(.95);
+
+}
