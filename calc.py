@@ -36,6 +36,16 @@ with col2:
 st.divider()
 
 # ---------------- DISPLAY ----------------
+st.markdown("### 🕒 History")
+
+if st.session_state.history:
+
+    for item in st.session_state.history[:8]:
+        st.markdown(f"- {item}")
+
+else:
+
+    st.caption("No calculations yet.")
 st.markdown(
     f"""
     <div class="display">
