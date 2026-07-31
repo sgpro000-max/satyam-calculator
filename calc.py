@@ -34,26 +34,18 @@ with col2:
     """, unsafe_allow_html=True)
 
 st.divider()
+
 left, right = st.columns([3, 1], gap="large")
 
 with left:
-
-if st.session_state.history:
-
-    for item in st.session_state.history[:8]:
-        st.markdown(f"- {item}")
-
-else:
-
-    st.caption("No calculations yet.")
-st.markdown(
-    f"""
-    <div class="display">
-        <span>{st.session_state.expression if st.session_state.expression else "0"}</span>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+    st.markdown(
+        f"""
+        <div class="display">
+            <span>{st.session_state.expression if st.session_state.expression else "0"}</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 # ---------------- ROW 1 ----------------
 c1, c2, c3, c4 = st.columns(4)
 
@@ -153,3 +145,11 @@ with c3:
         st.session_state.expression = result
 
         st.rerun()
+    with right:
+    st.markdown("### 🕒 History")
+
+    if st.session_state.history:
+        for item in st.session_state.history[:8]:
+            st.markdown(f"- {item}")
+    else:
+        st.caption("No calculations yet.")
