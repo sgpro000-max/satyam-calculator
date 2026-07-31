@@ -129,5 +129,17 @@ with c2:
 
 with c3:
     if st.button("=", use_container_width=True):
-        st.session_state.expression = calculate(st.session_state.expression)
+
+        old_expression = st.session_state.expression
+
+        result = calculate(old_expression)
+
+        if result != "Error":
+            st.session_state.history.insert(
+                0,
+                f"{old_expression} = {result}"
+            )
+
+        st.session_state.expression = result
+
         st.rerun()
