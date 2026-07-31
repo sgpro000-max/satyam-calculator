@@ -34,18 +34,28 @@ with col2:
     """, unsafe_allow_html=True)
 
 st.divider()
-
 left, right = st.columns([3, 1], gap="large")
-
 with left:
-    st.markdown(
-        f"""
-        <div class="display">
-            <span>{st.session_state.expression if st.session_state.expression else "0"}</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+
+# ---------------- DISPLAY ----------------
+st.markdown("### 🕒 History")
+
+if st.session_state.history:
+
+    for item in st.session_state.history[:8]:
+        st.markdown(f"- {item}")
+
+else:
+
+    st.caption("No calculations yet.")
+st.markdown(
+    f"""
+    <div class="display">
+        <span>{st.session_state.expression if st.session_state.expression else "0"}</span>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 # ---------------- ROW 1 ----------------
 c1, c2, c3, c4 = st.columns(4)
 
@@ -117,39 +127,31 @@ with c4:
         st.rerun()
 
 # ---------------- ROW 5 ----------------
-    c1, c2, c3 = st.columns(3)
+c1, c2, c3 = st.columns(3)
 
-    with c1:
-        if st.button("0", use_container_width=True):
-            st.session_state.expression = press(st.session_state.expression, "0")
-            st.rerun()
+with c1:
+    if st.button("0", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, "0")
+        st.rerun()
 
-    with c2:
-        if st.button(".", use_container_width=True):
-            st.session_state.expression = press(st.session_state.expression, ".")
-            st.rerun()
+with c2:
+    if st.button(".", use_container_width=True):
+        st.session_state.expression = press(st.session_state.expression, ".")
+        st.rerun()
 
-    with c3:
-        if st.button("=", use_container_width=True):
-    
-            old_expression = st.session_state.expression
+with c3:
+    if st.button("=", use_container_width=True):
 
-            result = calculate(old_expression)
+        old_expression = st.session_state.expression
 
-            if result != "Error":
-                st.session_state.history.insert(
-                    0,
-                    f"{old_expression} = {result}"
-                )
-    
-            st.session_state.expression = result
+        result = calculate(old_expression)
 
-            st.rerun()
-            with right:
-    st.markdown("### 🕒 History")
+        if result != "Error":
+            st.session_state.history.insert(
+                0,
+                f"{old_expression} = {result}"
+            )
 
-    if st.session_state.history:
-        for item in st.session_state.history[:8]:
-            st.markdown(f"- {item}")
-    else:
-        st.caption("No calculations yet.")
+        st.session_state.expression = result
+
+        st.rerun()
