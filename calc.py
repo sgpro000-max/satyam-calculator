@@ -35,7 +35,6 @@ with col2:
 
 st.divider()
 left, right = st.columns([3, 1], gap="large")
-with left:
 
 # ---------------- DISPLAY ----------------
 st.markdown("### 🕒 History")
