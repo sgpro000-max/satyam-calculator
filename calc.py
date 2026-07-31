@@ -15,6 +15,9 @@ with open("style.css") as f:
 # ---------------- SESSION ----------------
 if "expression" not in st.session_state:
     st.session_state.expression = ""
+    
+if "history" not in st.session_state:
+    st.session_state.history = []
 
 # ---------------- HEADER ----------------
 col1, col2 = st.columns([1,4])
