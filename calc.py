@@ -145,12 +145,11 @@ with c4:
             st.session_state.expression = result
 
             st.rerun()
-    with right:
+            with right:
     st.markdown("### 🕒 History")
 
     if st.session_state.history:
         for item in st.session_state.history[:8]:
-                st.markdown(f"- {item}")
+            st.markdown(f"- {item}")
     else:
         st.caption("No calculations yet.")
-    
